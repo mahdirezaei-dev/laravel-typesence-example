@@ -11,6 +11,8 @@ class Post extends Model
 {
     use HasFactory, Searchable;
 
+    protected $fillable = ['title', 'body', 'user_id'];
+
     /**
      * Get the user that owns the post.
      */

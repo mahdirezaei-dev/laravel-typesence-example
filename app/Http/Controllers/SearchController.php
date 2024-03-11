@@ -15,10 +15,12 @@ class SearchController extends Controller
         $posts = Post::search($request->get('q', ''))->options([
             'query_by' => 'title',
             'sort_by' => 'created_at:asc',
-            // 'facet_by' => 'user_id',
-            'filter_by' => 'user_id:[13..100]',
+            'facet_by' => 'user_id',
+            'filter_by' => 'user_id:[1..100]',
             // 'group_limit' => '1'
-        ])->get();
+        ])->query(function ($query) {
+            $query->with('user');
+        })->raw();
 
         return response()->json($posts);
     }
