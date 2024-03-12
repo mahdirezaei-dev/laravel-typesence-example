@@ -21,6 +21,8 @@ class SearchController extends Controller
         ])->query(function ($query) {
             $query->with('user');
         })->raw();
+		//->paginate(perPage: 5, pageName: 'items')
+        //->appends($request->only('q')));
 
         return response()->json($posts);
     }
